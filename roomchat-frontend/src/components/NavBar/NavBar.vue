@@ -10,8 +10,8 @@ defineProps<{title:string }>()
     <h1 class="title">{{title}}</h1>
 
     <div class="buttons-container">
-      <button>Signup</button>
-      <button>Login</button>
+      <button id="btn-signup">Signup</button>
+      <button id="btn-login">Login</button>
     </div>
    
   </nav>
