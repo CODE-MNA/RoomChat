@@ -26,15 +26,29 @@ describe("Socket Listener", () => {
         RegisterListenersWhenFirstReady(emitter, mockChatController, mockRoomController);
     });
 
-    test("Send message event", async () => {
+    test("Send message event should not run when in room", async () => {
         // Act
-        emitter.emit("send", msg1);
+        emitter.emit("sendMessage", msg1);
         await new Promise((resolve) => setTimeout(resolve, 0)); // Wait for event handlers to execute
 
         // Assert
         expect(mockChatController.sendMessage).not.toHaveBeenCalled();
         expect(mockRoomController.leaveRoom).not.toHaveBeenCalled();
         expect(mockRoomController.joinRoom).not.toHaveBeenCalled();
+    });
+
+    
+    test("Send message event should be called when in room", async () => {
+        // Act
+
+        emitter.emit("joinRoom", roomOne);
+        emitter.emit("sendMessage", msg1);
+        await new Promise((resolve) => setTimeout(resolve, 0)); // Wait for event handlers to execute
+
+        // Assert
+        expect(mockChatController.sendMessage).toHaveBeenCalledTimes(1);
+        expect(mockRoomController.leaveRoom).not.toHaveBeenCalled();
+        expect(mockRoomController.joinRoom).toHaveBeenCalledTimes(1);
     });
 
     test("Join room event", async () => {
@@ -67,14 +81,14 @@ describe("Socket Listener", () => {
     test("Integration Test case : Sequence of events", async () => {
         // Act: Sequence of events
         emitter.emit("joinRoom", "ABC"); // Step 1
-        emitter.emit("send", "XYZ");     // Step 2
-        emitter.emit("send", "422");      // Step 3
+        emitter.emit("sendMessage", "XYZ");     // Step 2
+        emitter.emit("sendMessage", "422");      // Step 3
         emitter.emit("leaveRoom");        // Step 4
         emitter.emit("leaveRoom");        // Step 5 (shouldn't leave)
-        emitter.emit("send", "LLK");      // Step 6 (shouldn't send)
+        emitter.emit("sendMessage", "LLK");      // Step 6 (shouldn't send)
         emitter.emit("joinRoom", "BYC");  // Step 7
         emitter.emit("joinRoom", "DIZ");  // Step 8 (shouldn't join)
-        emitter.emit("send", "RandomXCZ");// Step 9
+        emitter.emit("sendMessage", "RandomXCZ");// Step 9
         emitter.emit("leaveRoom");        // Step 10
         emitter.emit("leaveRoom");        // Step 11 (shouldn't be called)
 
