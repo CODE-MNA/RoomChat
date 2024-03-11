@@ -2,15 +2,18 @@
   "compilerOptions": {
     "outDir": "dist",
     "sourceMap": true,
+
     "target": "esnext",
-    "module": "commonjs",
+    "module": "CommonJS",
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "noImplicitAny": true,
     "strict": true,
     "skipLibCheck": true,
+    "baseUrl": "./",
     "paths": {
-      "@contracts/*":["../contracts/*"]
+      "@contracts/*":["../contracts/*"],
+      "@shared/*":["src/shared/*"]
     },
     "types":["@types/jest"]
   },
@@ -18,5 +21,8 @@
     "./*.js",
     "src/**/*.ts",
     "test/**/*.ts", "jest.config.ts"
-  ]
+  ],
+  "tsc-alias":{
+    "resolveFullPaths": false
+  }
 }

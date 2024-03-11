@@ -5,7 +5,7 @@ const { compilerOptions } = require("./tsconfig.json")
 const jestConfig : JestConfigWithTsJest  = {
   preset: 'ts-jest',
   testEnvironment: 'node',
-  modulePathIgnorePatterns: ['<rootDir>/dist/'],
+  modulePathIgnorePatterns: ['<rootDir>/dist/','<rootDir>/node_modules/'],
   moduleNameMapper: pathsToModuleNameMapper(compilerOptions.paths, { prefix: '<rootDir>/' })
 
 }

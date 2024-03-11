@@ -3,7 +3,7 @@ import { Router } from "express";
 import { IChatController, DefaultChatController } from "./ChatController";
 import { DefaultRoomController, IRoomController } from "./RoomController";
 
-import {ChatEvents} from "@contracts/ChatEvents";
+import {ChatEvents} from "@contracts/chatEvents";
 
 
 

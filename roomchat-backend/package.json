@@ -1,21 +1,21 @@
 {
-  "name": "express-api-starter-ts",
-  "version": "1.2.0",
-  "description": " A basic starter for an express.js API with Typescript",
+  "name": "roomchat-backend-api",
+  "version": "0.5.0",
+  "description": " A basic socket-io and express.js API with Typescript",
   "main": "src/index.ts",
   "scripts": {
-    "start": "ts-node src/index.ts",
+    "start": "node dist/roomchat-backend/src/index.js",
     "dev": "nodemon src/index.ts",
-    "build": "tsc",
+    "build": "tsc --build --clean && tsc --project tsconfig.json && tsc-alias -p tsconfig.json",
     "lint": "eslint --fix src test",
     "test": "jest",
     "typecheck": "tsc --noEmit"
   },
   "keywords": [],
-  "author": "CJ R. <cj@null.computer> (https://w3cj.now.sh)",
+  "author": "CODE-MNA",
   "repository": {
     "type": "git",
-    "url": ""
+    "url": "https://github.com/CODE-MNA/RoomChat"
   },
   "license": "MIT",
   "dependencies": {
@@ -46,6 +46,7 @@
     "supertest": "^6.3.3",
     "ts-jest": "^29.1.1",
     "ts-node": "^10.9.1",
+    "tsc-alias": "^1.8.8",
     "typescript": "^5.3.3"
   }
 }
