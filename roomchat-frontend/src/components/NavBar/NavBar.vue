@@ -3,6 +3,14 @@
 
 defineProps<{title:string }>()
 
+const login = ()=>{
+  console.log("Clicked Login.");
+  
+}
+const signup = ()=>{
+  console.log("Clicked Signup.");
+
+}
 </script>
 
 <template>
@@ -10,8 +18,8 @@ defineProps<{title:string }>()
     <h1 class="title">{{title}}</h1>
 
     <div class="buttons-container">
-      <button>Signup</button>
-      <button>Login</button>
+      <button id="btn-signup" @click="signup" >Signup</button>
+      <button id="btn-login" @click="login" >Login</button>
     </div>
    
   </nav>
