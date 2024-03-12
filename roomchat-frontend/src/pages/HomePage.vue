@@ -5,7 +5,7 @@ import NavBar from '../components/NavBar/NavBar.vue'
 
 <template>
 
-  <NavBar title="Room Chat" />
+  <NavBar title="Room Chat (alpha)" />
 </template>
 
 <style scoped>
