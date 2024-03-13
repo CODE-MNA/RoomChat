@@ -27,6 +27,7 @@ jobs:
           git config user.email github-actions@github.com
           git fetch --all
           git branch -r --format="%(refname:lstrip=3)" > branches.txt
+          
 
       - name: Force merge non-code changes from Master to all branches
         run: |
@@ -34,11 +35,12 @@ jobs:
             if [ "$branch" != "master" ]; then
               git checkout master
               git pull origin master
-              git checkout -b temp-branch
+              git checkout temp-branch
               git checkout -f $branch
               git reset --hard origin/$branch  # Fix: Use $branch instead of master
               git add .
               git commit -m "Merge changes outside of frontend and backend folders"
               git push origin $branch --force
+              git branch -d temp-branch
             fi
           done < branches.txt
