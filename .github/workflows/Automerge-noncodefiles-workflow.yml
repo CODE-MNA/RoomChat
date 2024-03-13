@@ -21,8 +21,10 @@ jobs:
         with:
           token: ${{ github.token}}
 
-      - name: List branches and save branches information
+      - name: Login, List branches and save branches information
         run: |
+          git config user.name github-actions
+          git config user.email github-actions@github.com
           git fetch --all
           git branch -r --format="%(refname:lstrip=3)" > branches.txt
 
