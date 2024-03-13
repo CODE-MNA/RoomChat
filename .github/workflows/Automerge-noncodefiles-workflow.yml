@@ -35,7 +35,7 @@ jobs:
             if [ "$branch" != "master" ]; then
               git checkout master
               git pull origin master
-              git checkout temp-branch
+              git checkout -b temp-branch
               git checkout -f $branch
               git reset --hard origin/$branch  # Fix: Use $branch instead of master
               git add .
