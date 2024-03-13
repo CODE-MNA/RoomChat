@@ -1,24 +1,28 @@
-# Chat App
-### Overview
-Welcome to our chat app! This application allows users to engage in real-time chat conversations, create/join rooms, send/receive messages, and view active user counts. It's perfect for connecting with friends, colleagues, or anyone around the globe!
+# RoomChat App
+Welcome to our chat app! Pre-alpha deployment: https://icy-pebble-0418c9b10.5.azurestaticapps.net/
 
-### Features
+This application will allow users to engage in real-time chat conversations, join rooms, send/receive messages, and view active user counts. It's perfect for connecting with friends, colleagues, or anyone around the globe!
+
+
+## Tech Stack
+- Frontend: Typescript, Vue.js, Vite Build Tool
+- Backend: TypeScript, Node.js, Express.js, Socket.IO
+- Databases: MongoDB, Redis
+- Deployment: Github Actions, Azure Static Web App, Azure App Service
+
+![Preeliminary-Architecture_RoomChat](https://github.com/CODE-MNA/RoomChat/assets/97069432/5d3ff792-d433-475e-a75c-21d057853ed9)
+
+
+### Planned Features
 - User Signup/Login: Users can sign up for an account or log in with existing credentials.
 - Room Management: Browse available rooms, create new rooms, or join existing ones.
 - Real-Time Messaging: Send and receive messages instantly within chat rooms.
 - User Interaction: View announcements when users join or leave rooms, and see the current number of active users in each room.
 
-## Tech Stack
-- Frontend: Vue.js, Vite Build Tool, Typescript
-- Backend: Node.js, Express.js, Socket.IO
-- Database: MongoDB
-- Infrastructure: Github Pages, Azure App Service
-
 ### Folder Structure
-frontend: Contains the frontend code written in React.js.
-backend: Contains the backend code written in Node.js and Express.js.
-infra: Infrastructure-related files, such as deployment scripts or configuration files.
-contracts: Contains Data-Transfer Objects that will be serialized between the databases
+- roomchat-frontend: Contains the frontend code written in Vue.js.
+- roomchat-backend: Contains the backend code written in Node.js and Express.js.
+- contracts: Contains Data-Transfer Objects that will be serialized between the apps
 <br/>
 
 
@@ -28,15 +32,15 @@ contracts: Contains Data-Transfer Objects that will be serialized between the da
 
 ```
 git clone <repository-url>
-cd chat-app
+cd roomchat
 ```
 ### Install Dependencies:
 ```
-cd frontend
+cd roomchat-frontend
 npm install
 ```
 ```
-cd ../backend
+cd ../roomchat-backend
 npm install
 ```
 ### Setup Environment Variables:
@@ -46,16 +50,16 @@ npm install
 Later on when the front-end starts making requests to backend, remember
 to configure the backend url in the frontend config as well.
 
-### Start the Application:
+### Start the Application (Dev Mode):
 
 ```
-cd ../backend
+cd to backend dir
 npm run dev
 ```
 
 ```
 Start the frontend development server
-cd ../frontend
+cd to front end
 npm run dev
 ```
 
