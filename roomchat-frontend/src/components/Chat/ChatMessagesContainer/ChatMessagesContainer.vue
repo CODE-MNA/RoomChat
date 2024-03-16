@@ -1,7 +1,7 @@
 <script setup lang="ts">
 
 import { ChatMessage } from '@models/ChatMessage';
-import ChatMessageDisplayVue from '../ChatMessageDisplay/ChatMessageDisplay.vue';
+import ChatMessageDisplay from '../ChatMessageDisplay/ChatMessageDisplay.vue';
 defineProps<{messageListProp: ChatMessage[]}>()
 
 
@@ -9,7 +9,7 @@ defineProps<{messageListProp: ChatMessage[]}>()
 
 <template>
   <div class="container">
-   <ChatMessageDisplayVue
+   <ChatMessageDisplay
   v-for="(item, index) in messageListProp"
   :message="item"
   :index="index"
