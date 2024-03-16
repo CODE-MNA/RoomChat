@@ -24,4 +24,4 @@ defineProps<{messageListProp: ChatMessage[]}>()
     gap: 1em;
     flex-direction: column;
   }
-</style>../../../models/ChatMessage
+</style>
