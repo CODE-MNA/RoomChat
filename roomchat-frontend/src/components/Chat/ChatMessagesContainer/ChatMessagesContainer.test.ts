@@ -1,4 +1,4 @@
-import { mount, shallowMount } from '@vue/test-utils';
+import { mount } from '@vue/test-utils';
 import ChatMessagesContainer from './ChatMessagesContainer.vue';
 import { ChatMessage } from '@models/ChatMessage';
 

@@ -3,34 +3,37 @@ import { ref } from 'vue';
 import { ChatMessage } from '@models/ChatMessage';
 
 
-
-const currentMessage = ref("")
 const emit = defineEmits<{
-  messageSend: [message : ChatMessage]
+  messageSend: [message : ChatMessage],
+  
 }>()
 
-const TriggerSendMessage = ()=>{
-    
+const currentMessage = ref("")
 
+const TriggerSendMessage = (event: Event) =>{
+   event.preventDefault()
+    
+  if (currentMessage.value == "") return;
 
     const msg : ChatMessage = {
         sender:"default",
-        message:currentMessage.value,
+        message: currentMessage.value,
         UTC_timestamp: new Date().toUTCString()
 
         
     }
 
-    emit("messageSend",msg)
    
+    emit("messageSend",msg)
+    currentMessage.value = ""
 }
 </script>
 
 <template>
-    <div class="send-controls-container">
-        <input type="text" v-model.trim="currentMessage">
+    <form class="send-controls-container">
+        <input type="text" v-model="currentMessage" @keydown.enter="TriggerSendMessage" >
         <button @click="TriggerSendMessage">Send</button>
-    </div>
+    </form>
 </template>
 
 <style scoped>
