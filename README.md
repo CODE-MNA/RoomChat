@@ -28,6 +28,9 @@ This application will allow users to engage in real-time chat conversations, joi
 
 
 # Development Setup Instructions
+
+Prerequisites: node, npm, typescript
+
 ### Clone the Repository:
 
 ```
@@ -70,8 +73,6 @@ npm run dev
 
 - When you develop and write tests, you can run them using npm test (not configured yet)
 
-## Contributing
-We welcome contributions from the community! If you'd like to contribute to the project, please fork the repository, make your changes, and submit a pull request. Don't forget to follow our contribution guidelines.
 
 ## License
 This project is licensed under the MIT License.
