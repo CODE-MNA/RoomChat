@@ -10,6 +10,6 @@ export type IChatController =  {
 export class DefaultChatController implements IChatController {
     sendMessage(socket: EventEmitter, message: string): void {
         console.log(message);
-        // Implement send logic
+        
     }
 }
