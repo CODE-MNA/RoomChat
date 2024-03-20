@@ -11,7 +11,7 @@ export function UseChat(roomName : string){
 
 const messages : Ref<ChatMessage[]> = ref([{
     sender:"System",
-    message:"Hello user, this is default message!",
+    message:"Hello user, this is default message! 🚀",
     UTC_timestamp: "---"
 }])
 
@@ -28,7 +28,7 @@ const SendMessage = (message: ChatMessage) =>{
 
     EmitSendMessageEvent(message.message)
     
-    console.log("new message: " + JSON.stringify(message))
+ 
 } 
 
 onMounted(()=>{
@@ -53,7 +53,7 @@ onMounted(()=>{
                 if(room !== roomName) {return;}
                 messages.value.push({
                     sender:"SYSTEM - " + room ,
-                    message:joiner + " joined this room!",
+                    message:joiner + " joined this room! 😁",
                     UTC_timestamp: new Date(Date.now()).toLocaleString()
                 })
             },

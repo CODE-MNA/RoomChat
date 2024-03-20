@@ -28,5 +28,8 @@ jobs:
           app_location: "/roomchat-frontend" # App source code path
           api_location: "" # Api source code path - optional
           output_location: "dist" # Built app content directory - optional
+        env: 
+          VITE_BACKEND_SOCKET_URL: ${{secrets.AZURE_PUBSUB_CONNNECTION}}
           ###### End of Repository/Build Configurations ######
+
 
