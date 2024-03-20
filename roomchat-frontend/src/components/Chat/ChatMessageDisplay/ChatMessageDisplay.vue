@@ -36,7 +36,7 @@ const computedClass = computed(() => {
     border-radius: 0.6em;
     margin: 0.5em;
     padding: 6px 2em;
-    width: 100%;
+    width: calc(100%-3em);
   }
 
   .sender-name {
@@ -63,7 +63,10 @@ const computedClass = computed(() => {
   }
 
   .mine{
-    background-color: rgb(52, 65, 52)
+    background-color: rgb(52, 65, 52);
+    border: 0.3em solid #132117;
+
+    
   }
   .mine > .sender-name{
     font-weight: 800;
@@ -78,6 +81,8 @@ const computedClass = computed(() => {
   .error{
     background-color: #542c2f;
     letter-spacing: 0.2em;
+    border: 0.3em solid #221016;
+
     
   }
   </style>

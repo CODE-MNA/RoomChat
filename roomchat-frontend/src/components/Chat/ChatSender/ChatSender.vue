@@ -44,8 +44,7 @@ input[type="text"] {
   margin-right: 10px;
   border: 4px solid #ccc;
   border-radius: 5px;
-  padding: 1em 2em;
-  font-size: 1.4rem;
+
   transition: border-color 0.3s;
 }
 
@@ -54,9 +53,8 @@ input[type="text"]:focus {
 }
 
 button {
-  padding: 1em 2em;
-  font-size: 1.4rem;
 
+  height: max-content;
   background-color: #181b1d;
   color: #fff;
   border: none;
@@ -66,9 +64,18 @@ button {
 }
 .send-controls-container {
   display: flex;
-  align-items: center;
-  
+  align-items:center;
+  justify-content: start;
+  flex-grow: 3 1;
+
     width: 100%;
+    min-width: 0;
+    
+    min-height: 4em;
+}
+.send-controls-container > * {
+  font-size: calc(50% + 0.6rem);
+  padding: 2vh 2vw;
 }
 button:hover {
   background-color: #19782c;
