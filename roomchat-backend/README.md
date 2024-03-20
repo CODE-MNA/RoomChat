@@ -12,12 +12,15 @@ Contains code for chat backend.
 values specific to your local device. </br>
 - <b>Refer to list of env variable section to see all variables that need to be configured.</b>
 
+
+
  > Example
 ```
 NODE_ENV=development
 PORT=8080
+
 ```
 
 ## List of variables
 
-NODE_ENV, PORT
+NODE_ENV, PORT, AZURE_PUBSUB_CONNECTION (Passable as first arg string on runtime as well), SOCKET_PORT, FRONTEND_URL

@@ -17,11 +17,12 @@ export class SocketApplication {
         this.io  = new WebSocketServer<
             ClientToServerEvents,
             ServerToClientEvents
-            >(httpServer, {allowUpgrades:true,cors:{origin:"*"}});
+            >(httpServer, {allowUpgrades:true,cors:{origin:cors_origin ||
+            '*'}});
         
         useAzureSocketIO(this.io, {
-                hub: "RoomChatHub", // The hub name can be any valid string.
-                connectionString: process.argv[2]
+                hub: "RoomChatHub",
+                connectionString: process.argv[2] || process.env.AZURE_PUBSUB_CONNECTION || "NO STRING PRESENT"
             });
         
     }
