@@ -3,13 +3,13 @@ import {ChatEvents} from '@contracts/chatEvents'
 import { onMounted, onUnmounted, ref } from 'vue';
 import {ClientToServerEvents,ServerToClientEvents} from '@contracts/chatInterfaces'
 
-// const prodUrl = 'https://roomchat-mna.webpubsub.azure.com'
-const devUrl = 'http://localhost:3005'
+const prodUrl = 'https://roomchat-mna.webpubsub.azure.com'
+//const devUrl = 'http://localhost:3005'
 
 
 
-  const clientSocket : Socket<ServerToClientEvents,ClientToServerEvents> = io(devUrl,{
-//    path:"/clients/socketio/hubs/RoomChatHub",
+  const clientSocket : Socket<ServerToClientEvents,ClientToServerEvents> = io(prodUrl,{
+  path:"/clients/socketio/hubs/RoomChatHub",
    autoConnect:false,
    withCredentials:false,
    

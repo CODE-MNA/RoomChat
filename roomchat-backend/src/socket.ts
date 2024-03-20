@@ -4,6 +4,7 @@ import {Server as Http} from 'http'
 import { ChatEvents } from '@contracts/chatEvents'
 import {ClientToServerEvents,ServerToClientEvents} from '@contracts/chatInterfaces'
 import { RegisterListenersWhenFirstReady } from './features/chat/SocketListeners';
+import { useAzureSocketIO } from '@azure/web-pubsub-socket.io';
 
 
 
@@ -18,6 +19,10 @@ export class SocketApplication {
             ServerToClientEvents
             >(httpServer, {allowUpgrades:true,cors:{origin:"*"}});
         
+        useAzureSocketIO(this.io, {
+                hub: "RoomChatHub", // The hub name can be any valid string.
+                connectionString: process.argv[2]
+            });
         
     }
 
