@@ -8,7 +8,7 @@ import { RegisterListenersWhenFirstReady } from './features/chat/SocketListeners
 
 
 export class SocketApplication {
-    io : WebSocketServer;
+    io : WebSocketServer<ClientToServerEvents,ServerToClientEvents>;
     port : number = 3005;
 
     
@@ -30,15 +30,15 @@ export class SocketApplication {
         this.io.listen(this.port)
 
         this.io.on('connection',(newClientSocket : Socket<ClientToServerEvents,ServerToClientEvents>)=>{
-            console.log("User Connected.")
-          
+            let connectedUsersCount = this.io.of('/').sockets.size
+            console.log(`Connected users: ${connectedUsersCount}`)
 
             RegisterListenersWhenFirstReady(newClientSocket, this.io)
 
 
             newClientSocket.on('disconnect',(reason : DisconnectReason)=>{
-                console.log("User Disconnected.")
-                console.log("Reason : " + reason)
+                let connectedUsersCount = this.io.of('/').sockets.size
+                console.log(`Connected users: ${connectedUsersCount} (-1)`)
               
             })
         })

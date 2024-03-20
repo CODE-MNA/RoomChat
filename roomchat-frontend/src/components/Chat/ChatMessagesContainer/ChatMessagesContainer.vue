@@ -20,8 +20,16 @@ defineProps<{messageListProp: ChatMessage[]}>()
 
 <style scoped>
   .container{
-    display: flex;
-    gap: 1em;
+    display: block;
+    gap: 0.6em;
     flex-direction: column;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    width: 89%;
+    max-height: calc(80vh - 5rem);
+    justify-content: flex-end;
+    align-items: center;
+    padding-left: 2em;
+    padding-right: 6em;
   }
 </style>

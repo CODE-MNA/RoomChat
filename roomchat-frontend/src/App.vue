@@ -6,7 +6,7 @@ import ChatRoom from '@pages/ChatRoom.vue'
 <template>
   <NavBar title="Room Chat (pre-alpha)" />
   <ChatRoom/>
-  <footer>The end.</footer>
+  
 </template>
 
 <style scoped>

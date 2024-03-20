@@ -1,6 +1,6 @@
 import {Socket, io} from 'socket.io-client'
 import {ChatEvents} from '@contracts/chatEvents'
-import { ref, toRefs } from 'vue';
+import { onMounted, onUnmounted, ref } from 'vue';
 import {ClientToServerEvents,ServerToClientEvents} from '@contracts/chatInterfaces'
 
 // const prodUrl = 'https://roomchat-mna.webpubsub.azure.com'
@@ -15,7 +15,7 @@ const devUrl = 'http://localhost:3005'
    
 })
 
-const socketState = toRefs({
+const socketState = ref({
     connected: clientSocket.connected,
     id: clientSocket.id
 })
@@ -30,19 +30,41 @@ export function UseSocket(){
 
    
    
-   
+   onMounted(()=>{
     clientSocket.connect()
 
+    clientSocket.on('connect', () => {
+        socketState.value = {
+            connected: true,
+            id: clientSocket.id
+        }
+        if(roomState.value.room !== ""){
+            EmitJoinRoomEvent(roomState.value.room)
+        }
+      });
+
+      clientSocket.on('disconnect', () => {
+        socketState.value = {
+            connected: false,
+            id: "DISCONNECTED_USER"
+        }
+      });
+   })
+
    
+   onUnmounted(()=>{
+        clientSocket.disconnect();
+        clientSocket.off();
+   })
 
     
 
 
     const EmitJoinRoomEvent = (requestedRoom:string)=>{
             
-        clientSocket.emit(ChatEvents.JOIN_ROOM,requestedRoom)
         
         roomState.value.room = requestedRoom
+        clientSocket.emit(ChatEvents.JOIN_ROOM,requestedRoom)
 
     }
 

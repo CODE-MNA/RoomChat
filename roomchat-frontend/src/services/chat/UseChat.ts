@@ -18,9 +18,12 @@ const messages : Ref<ChatMessage[]> = ref([{
 const SendMessage = (message: ChatMessage) =>{
     
     if(message.message === "") return;
-    if(socketState.id === undefined) return;
-    message.UTC_timestamp = Date.UTC(Date.now()).toString();
-    message.sender = socketState.id.value || "ERROR_MISSING_ID" ;
+    if(socketState.value.connected === false){
+        message.error = true
+    };
+    message.UTC_timestamp = new Date().toLocaleString();
+    message.sender = "YOU - " + socketState.value.id || "ERROR_MISSING_ID" ;
+    message.mine = true;
     messages.value.push(message)
 
     EmitSendMessageEvent(message.message)
@@ -40,7 +43,7 @@ onMounted(()=>{
                     return;
                 }
                 let displayed : ChatMessage = {
-                    sender:senderName, message:message, UTC_timestamp:timeStamp.toString()
+                    sender:senderName, message:message, UTC_timestamp:new Date(timeStamp).toLocaleString()
                 }
 
                 messages.value.push(displayed);
@@ -51,16 +54,16 @@ onMounted(()=>{
                 messages.value.push({
                     sender:"SYSTEM - " + room ,
                     message:joiner + " joined this room!",
-                    UTC_timestamp: "---"
+                    UTC_timestamp: new Date(Date.now()).toLocaleString()
                 })
             },
             [ChatEvents.
                 LEAVE_ROOM](roomLeft, leaver) {
-                    if(roomLeft !== roomName) {return;}
+                    if(roomLeft !== roomName && roomLeft !== "ALL") {return;}
                     messages.value.push({
                         sender:"SYSTEM - " + roomLeft ,
                         message:leaver + " left this room! 😔",
-                        UTC_timestamp: "---"
+                        UTC_timestamp: new Date(Date.now()).toLocaleString()
                     })
             },
         }
@@ -89,7 +92,7 @@ const LeaveRoom = () =>{
     console.log("Left Room" + roomName)
 
     EmitLeaveRoomEvent()
-    //socket emit (leaveRoom)
+    
 } 
     
 

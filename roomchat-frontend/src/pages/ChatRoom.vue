@@ -15,13 +15,22 @@ const list = ((messages))
 </script>
 
 <template>
+    <div class="chatroom-container">
 
-    <ChatMessagesContainer v-bind:messageListProp="list"></ChatMessagesContainer>
-    <ChatSender @messageSend="SendMessage"></ChatSender>
+        <ChatMessagesContainer v-bind:messageListProp="list"></ChatMessagesContainer>
+        <ChatSender @messageSend="SendMessage"></ChatSender>
+    </div>
 
   
 </template>
 
 <style scoped>
-
+    .chatroom-container{
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        width: 80%;
+        justify-content: space-between;
+        margin: 0.5em auto;
+    }
 </style>

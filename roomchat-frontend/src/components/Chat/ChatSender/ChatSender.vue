@@ -37,17 +37,15 @@ const TriggerSendMessage = (event: Event) =>{
 </template>
 
 <style scoped>
-.send-controls-container {
-  display: flex;
-  align-items: center;
-}
+
 
 input[type="text"] {
   flex: 1;
-  padding: 8px;
   margin-right: 10px;
-  border: 2px solid #ccc;
+  border: 4px solid #ccc;
   border-radius: 5px;
+  padding: 1em 2em;
+  font-size: 1.4rem;
   transition: border-color 0.3s;
 }
 
@@ -56,7 +54,9 @@ input[type="text"]:focus {
 }
 
 button {
-  padding: 8px 16px;
+  padding: 1em 2em;
+  font-size: 1.4rem;
+
   background-color: #181b1d;
   color: #fff;
   border: none;
@@ -64,7 +64,12 @@ button {
   cursor: pointer;
   transition: background-color 0.3s;
 }
-
+.send-controls-container {
+  display: flex;
+  align-items: center;
+  
+    width: 100%;
+}
 button:hover {
   background-color: #19782c;
 }
