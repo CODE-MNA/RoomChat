@@ -1,27 +1,10 @@
 
 import {DisconnectReason, Socket, Server as WebSocketServer} from 'socket.io'
 import {Server as Http} from 'http'
+import { ChatEvents } from '@contracts/chatEvents'
+import {ClientToServerEvents,ServerToClientEvents} from '@contracts/chatInterfaces'
+import { RegisterListenersWhenFirstReady } from './features/chat/SocketListeners';
 
-
-
-interface ServerToClientEvents {
-    noArg: () => void;
-    basicEmit: (a: number, b: string, c: Buffer) => void;
-    withAck: (d: string, callback: (e: number) => void) => void;
-  }
-  
-  interface ClientToServerEvents {
-    hello: () => void;
-  }
-  
-  interface InterServerEvents {
-    ping: () => void;
-  }
-  
-  interface SocketData {
-    name: string;
-    age: number;
-  }
 
 
 export class SocketApplication {
@@ -32,15 +15,13 @@ export class SocketApplication {
     constructor(httpServer : Http, cors_origin?: string){
         this.io  = new WebSocketServer<
             ClientToServerEvents,
-            ServerToClientEvents,
-            InterServerEvents,
-            SocketData
+            ServerToClientEvents
             >(httpServer, {allowUpgrades:true,cors:{origin:"*"}});
         
         
     }
 
-    InitializeSocketIo(handler : (socket : Socket)=>void, overridenPort? : number){
+    InitializeSocketIo(overridenPort? : number){
 
         if(overridenPort){
             this.port = overridenPort;
@@ -48,9 +29,12 @@ export class SocketApplication {
         console.log(`Listening to ${this.port} ` );
         this.io.listen(this.port)
 
-        this.io.on('connection',(newClientSocket : Socket)=>{
+        this.io.on('connection',(newClientSocket : Socket<ClientToServerEvents,ServerToClientEvents>)=>{
             console.log("User Connected.")
-            handler?.call(this,newClientSocket);
+          
+
+            RegisterListenersWhenFirstReady(newClientSocket, this.io)
+
 
             newClientSocket.on('disconnect',(reason : DisconnectReason)=>{
                 console.log("User Disconnected.")

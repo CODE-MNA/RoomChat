@@ -1,72 +1,67 @@
 import {Socket, io} from 'socket.io-client'
 import {ChatEvents} from '@contracts/chatEvents'
-import { ref } from 'vue';
+import { ref, toRefs } from 'vue';
+import {ClientToServerEvents,ServerToClientEvents} from '@contracts/chatInterfaces'
 
-const backendUrl = 'https://roomchat-mna.webpubsub.azure.com'
+// const prodUrl = 'https://roomchat-mna.webpubsub.azure.com'
+const devUrl = 'http://localhost:3005'
 
 
 
-interface ClientToServerEvents {
-    [ChatEvents.JOIN_ROOM] : (room : string) => void,
-    [ChatEvents.LEAVE_ROOM] : (roomLeft : string) => void,
-    [ChatEvents.SEND_MESSAGE] : (message : string, room : string) => void,
-
-  }
-  
-  interface ServerToClientEvents {
-    [ChatEvents.JOIN_ROOM] : (room : string) => void,
-    [ChatEvents.LEAVE_ROOM] : (roomLeft : string) => void,
-    [ChatEvents.SEND_MESSAGE] : (message : string, senderName : string, timeStamp : number) => void,
-
-  }
-  const clientSocket : Socket<ServerToClientEvents,ClientToServerEvents> = io(backendUrl,{
-   path:"/clients/socketio/hubs/RoomChatHub"
+  const clientSocket : Socket<ServerToClientEvents,ClientToServerEvents> = io(devUrl,{
+//    path:"/clients/socketio/hubs/RoomChatHub",
+   autoConnect:false,
+   withCredentials:false,
+   
 })
+
+const socketState = toRefs({
+    connected: clientSocket.connected,
+    id: clientSocket.id
+})
+
+
 export function UseSocket(){
 
-    const state = ref({
+    const roomState = ref({
         room : "",
-        connected: false,
-        
+      
     });
 
-  
+   
+   
+   
+    clientSocket.connect()
 
-    state.value.connected = clientSocket.connected 
-    clientSocket.onAny(e=>{
-        console.log("received " + e)
-    })
+   
 
- 
+    
 
 
     const EmitJoinRoomEvent = (requestedRoom:string)=>{
             
         clientSocket.emit(ChatEvents.JOIN_ROOM,requestedRoom)
         
-        state.value.room = requestedRoom
+        roomState.value.room = requestedRoom
 
     }
 
     const EmitLeaveRoomEvent = ()=>{
             
-        clientSocket.emit(ChatEvents.LEAVE_ROOM,state.value.room)
-        state.value.room = ""
+        clientSocket.emit(ChatEvents.LEAVE_ROOM,roomState.value.room)
+        roomState.value.room = ""
     }
 
     const EmitSendMessageEvent = ( message:string) =>{
 
-        clientSocket.emit(ChatEvents.SEND_MESSAGE,message,state.value.room)
+        clientSocket.emit(ChatEvents.SEND_MESSAGE,message,roomState.value.room)
 
     }
 
-    const SubscribeToRoomEvents = (OnMessage : Function,OnUserJoined : Function,OnUserLeft : Function)=>{
-        clientSocket.on(ChatEvents.SEND_MESSAGE,(msg,sender,dateSent)=>{
-                OnMessage(msg,sender,dateSent)
-        })
-
-        clientSocket.on(ChatEvents.JOIN_ROOM, (room : string)=> OnUserJoined(room))
-        clientSocket.on(ChatEvents.LEAVE_ROOM, (room : string)=> OnUserLeft(room))
+    const SubscribeToRoomEvents = (onEvent_handle : ServerToClientEvents)=>{
+        clientSocket.on(ChatEvents.SEND_MESSAGE,onEvent_handle[ChatEvents.SEND_MESSAGE])
+        clientSocket.on(ChatEvents.JOIN_ROOM, onEvent_handle[ChatEvents.JOIN_ROOM])
+        clientSocket.on(ChatEvents.LEAVE_ROOM, onEvent_handle[ChatEvents.LEAVE_ROOM])
     }
 
     const UnsubscribeFromRoomEvents = ()=>{
@@ -78,7 +73,7 @@ export function UseSocket(){
 
 
     return {
-        state,
+       socketState,
         EmitJoinRoomEvent,
         EmitLeaveRoomEvent,
         SubscribeToRoomEvents,
