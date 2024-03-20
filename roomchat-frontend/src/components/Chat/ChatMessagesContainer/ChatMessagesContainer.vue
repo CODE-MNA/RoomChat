@@ -31,5 +31,6 @@ defineProps<{messageListProp: ChatMessage[]}>()
     align-items: center;
     padding-left: 2em;
     padding-right: 6em;
+    margin-bottom: 0.5em;
   }
 </style>

@@ -18,8 +18,8 @@ const signup = ()=>{
     <h1 class="title">{{title}}</h1>
 
     <div class="buttons-container">
-      <button id="btn-signup" @click="signup" >Signup</button>
-      <button id="btn-login" @click="login" >Login</button>
+      <button disabled id="btn-signup" @click="signup" >Signup</button>
+      <button disabled id="btn-login" @click="login" >Login</button>
     </div>
    
   </nav>
@@ -38,6 +38,10 @@ const signup = ()=>{
 }
 .buttons-container > button{
  margin: 0.5em;
+ 
 }
-
+.buttons-container>button:hover{
+  cursor: not-allowed;
+  
+}
 </style>
