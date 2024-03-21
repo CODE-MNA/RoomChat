@@ -1,5 +1,5 @@
 # RoomChat App
-Welcome to our chat app! Pre-alpha deployment: https://icy-pebble-0418c9b10.5.azurestaticapps.net/
+Welcome to our chat app! Alpha version deployment: https://icy-pebble-0418c9b10.5.azurestaticapps.net/
 
 This application will allow users to engage in real-time chat conversations, join rooms, send/receive messages, and view active user counts. It's perfect for connecting with friends, colleagues, or anyone around the globe!
 
@@ -7,10 +7,9 @@ This application will allow users to engage in real-time chat conversations, joi
 ## Tech Stack
 - Frontend: Typescript, Vue.js, Vite Build Tool
 - Backend: TypeScript, Node.js, Express.js, Socket.IO
-- Databases: MongoDB, Redis
-- Deployment: Github Actions, Azure Static Web App, Azure App Service
+- Deployment / Infrastructure: Github Actions, Azure Static Web App, Azure Web Pub/Sub 
 
-![Preeliminary-Architecture_RoomChat](https://github.com/CODE-MNA/RoomChat/assets/97069432/5d3ff792-d433-475e-a75c-21d057853ed9)
+![Alpha-Architecture_RoomChat](https://github.com/CODE-MNA/RoomChat/assets/97069432/d4e77b40-59c4-4de1-a9a5-0587a34dabf7)
 
 
 ### Planned Features
@@ -21,7 +20,7 @@ This application will allow users to engage in real-time chat conversations, joi
 
 ### Folder Structure
 - roomchat-frontend: Contains the frontend code written in Vue.js.
-- roomchat-backend: Contains the backend code written in Node.js and Express.js.
+- roomchat-backend: Contains the backend code written in Node.js.
 - contracts: Contains Data-Transfer Objects that will be serialized between the apps
 <br/>
 
