@@ -2,7 +2,7 @@
   "name": "roomchat-backend-api",
   "version": "0.5.0",
   "description": " A basic socket-io and express.js API with Typescript",
-  "main": "src/index.ts",
+  "main": "dist/roomchat-backend/src/index.js",
   "scripts": {
     "start": "node dist/roomchat-backend/src/index.js",
     "dev": "nodemon src/index.ts",
