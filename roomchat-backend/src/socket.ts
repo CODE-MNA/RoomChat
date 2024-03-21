@@ -18,7 +18,7 @@ export class SocketApplication {
             ClientToServerEvents,
             ServerToClientEvents
             >(httpServer, {allowUpgrades:true,cors:{origin:cors_origin ||
-            '*'}});
+            '*'}, perMessageDeflate:false});
         
         useAzureSocketIO(this.io, {
                 hub: "RoomChatHub",
