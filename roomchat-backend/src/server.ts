@@ -1,4 +1,4 @@
-import app from './app';
+import app from './application';
 import { SocketApplication } from './socket';
 import { createServer } from 'http';
 
