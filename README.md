@@ -1,5 +1,7 @@
 # RoomChat App
-Welcome to our chat app! Alpha version deployment: https://icy-pebble-0418c9b10.5.azurestaticapps.net/
+Welcome to our chat app! 
+Alpha version deployment: https://icy-pebble-0418c9b10.5.azurestaticapps.net/
+Proxy/Backend Server: https://roomchat-mna.azurewebsites.net/ (If you don't get redirected to static site, the backend server is inactive and will begin after few minutes (a cold start)
 
 This application will allow users to engage in real-time chat conversations, join rooms, send/receive messages, and view active user counts. It's perfect for connecting with friends, colleagues, or anyone around the globe!
 
