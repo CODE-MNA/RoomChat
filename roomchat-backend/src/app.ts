@@ -27,7 +27,13 @@ app.use(express.json());
 
 // Add Route Handlers..
 app.get("/",(req,res)=>{
-    res.status(200).json("OK");
+    let redirectTo = process.env.FRONTEND_URL
+
+    if(redirectTo === typeof(undefined) || redirectTo === ''){
+        res.send('<h1>No Frontend Proxy!</h1>')
+    }
+    redirectTo = process.env.FRONTEND_URL!
+    res.redirect(redirectTo)
 })
 
 

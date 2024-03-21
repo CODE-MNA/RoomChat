@@ -22,7 +22,11 @@
     "noFallthroughCasesInSwitch": true,
 
     "paths": {
-      "@contracts/*":["../contracts/*"]
+      "@contracts/*":["../contracts/*"],
+      "@components/*":["./src/components/*"],
+      "@services/*":["./src/services/*"],
+      "@models/*":["./src/models/*"],
+      "@pages/*":["./src/pages/*"]
     }
 
   },

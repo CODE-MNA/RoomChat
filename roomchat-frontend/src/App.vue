@@ -1,11 +1,12 @@
 <script setup lang="ts">
-import HomePage from './pages/HomePage.vue'
-
+import NavBar from '@components/NavBar/NavBar.vue';
+import ChatRoom from '@pages/ChatRoom.vue'
 </script>
 
 <template>
-
-  <HomePage/>
+  <NavBar title="Room Chat (alpha)" />
+  <ChatRoom/>
+  
 </template>
 
 <style scoped>
