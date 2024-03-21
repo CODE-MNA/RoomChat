@@ -1,11 +1,11 @@
 {
   "name": "roomchat-backend-api",
-  "version": "0.5.0",
+  "version": "0.3.0",
   "description": " A basic socket-io and express.js API with Typescript",
-  "main": "dist/roomchat-backend/src/index.js",
+  "main": "./dist/roomchat-backend/src/server.js",
   "scripts": {
-    "start": "node dist/roomchat-backend/src/index.js",
-    "dev": "nodemon src/index.ts",
+    "start": "node ./dist/roomchat-backend/src/server.js",
+    "dev": "nodemon src/server.ts",
     "build": "tsc --build --clean && tsc --project tsconfig.json && tsc-alias -p tsconfig.json",
     "lint": "eslint --fix src test",
     "test": "jest",
